@@ -1,0 +1,129 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnf0v8r8t3x8h"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_hl3k1"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hl3k1")
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Root" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="TitleLabel" type="Label" parent="Margin/Root"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Sultan-like Interaction Demo"
+
+[node name="TurnLabel" type="Label" parent="Margin/Root"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Turn"
+
+[node name="GoalLabel" type="Label" parent="Margin/Root"]
+unique_name_in_owner = true
+layout_mode = 2
+autowrap_mode = 3
+text = "Goal"
+
+[node name="StatsLabel" type="Label" parent="Margin/Root"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Stats"
+
+[node name="CardsTitle" type="Label" parent="Margin/Root"]
+layout_mode = 2
+text = "Character Cards"
+
+[node name="CardsRow" type="HBoxContainer" parent="Margin/Root"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Card1Button" type="Button" parent="Margin/Root/CardsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Card 1"
+
+[node name="Card2Button" type="Button" parent="Margin/Root/CardsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Card 2"
+
+[node name="Card3Button" type="Button" parent="Margin/Root/CardsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Card 3"
+
+[node name="EventsTitle" type="Label" parent="Margin/Root"]
+layout_mode = 2
+text = "Open Events"
+
+[node name="EventsList" type="ItemList" parent="Margin/Root"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+fixed_column_width = 500
+same_column_width = true
+select_mode = 0
+
+[node name="EventDetailLabel" type="Label" parent="Margin/Root"]
+unique_name_in_owner = true
+layout_mode = 2
+autowrap_mode = 3
+text = "Select an event to see details."
+
+[node name="ActionRow" type="HBoxContainer" parent="Margin/Root"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="AssignButton" type="Button" parent="Margin/Root/ActionRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Assign Selected Card"
+
+[node name="NextTurnButton" type="Button" parent="Margin/Root/ActionRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Next Turn"
+
+[node name="RestartButton" type="Button" parent="Margin/Root/ActionRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Restart"
+
+[node name="LogTitle" type="Label" parent="Margin/Root"]
+layout_mode = 2
+text = "Log"
+
+[node name="LogLabel" type="RichTextLabel" parent="Margin/Root"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+scroll_following = true
