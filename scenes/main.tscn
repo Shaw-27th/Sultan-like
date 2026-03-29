@@ -33,27 +33,27 @@ theme_override_constants/separation = 10
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
-text = "Sultan-like Interaction Demo"
+text = "苏丹式互动演示"
 
 [node name="TurnLabel" type="Label" parent="Margin/Root"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Turn"
+text = "回合"
 
 [node name="GoalLabel" type="Label" parent="Margin/Root"]
 unique_name_in_owner = true
 layout_mode = 2
 autowrap_mode = 3
-text = "Goal"
+text = "目标"
 
 [node name="StatsLabel" type="Label" parent="Margin/Root"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Stats"
+text = "资源"
 
 [node name="CardsTitle" type="Label" parent="Margin/Root"]
 layout_mode = 2
-text = "Character Cards"
+text = "角色卡"
 
 [node name="CardsRow" type="HBoxContainer" parent="Margin/Root"]
 layout_mode = 2
@@ -63,23 +63,23 @@ theme_override_constants/separation = 8
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Card 1"
+text = "角色卡 1"
 
 [node name="Card2Button" type="Button" parent="Margin/Root/CardsRow"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Card 2"
+text = "角色卡 2"
 
 [node name="Card3Button" type="Button" parent="Margin/Root/CardsRow"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Card 3"
+text = "角色卡 3"
 
 [node name="EventsTitle" type="Label" parent="Margin/Root"]
 layout_mode = 2
-text = "Open Events"
+text = "待处理事件"
 
 [node name="EventsList" type="ItemList" parent="Margin/Root"]
 unique_name_in_owner = true
@@ -93,7 +93,7 @@ select_mode = 0
 unique_name_in_owner = true
 layout_mode = 2
 autowrap_mode = 3
-text = "Select an event to see details."
+text = "请选择一个事件查看详情。"
 
 [node name="ActionRow" type="HBoxContainer" parent="Margin/Root"]
 layout_mode = 2
@@ -103,23 +103,23 @@ theme_override_constants/separation = 8
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Assign Selected Card"
+text = "派遣所选角色卡"
 
 [node name="NextTurnButton" type="Button" parent="Margin/Root/ActionRow"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Next Turn"
+text = "下一回合"
 
 [node name="RestartButton" type="Button" parent="Margin/Root/ActionRow"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Restart"
+text = "重新开始"
 
 [node name="LogTitle" type="Label" parent="Margin/Root"]
 layout_mode = 2
-text = "Log"
+text = "日志"
 
 [node name="LogLabel" type="RichTextLabel" parent="Margin/Root"]
 unique_name_in_owner = true

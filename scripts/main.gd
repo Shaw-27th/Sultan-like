@@ -36,8 +36,8 @@ var open_events: Array[Dictionary] = []
 
 func _ready() -> void:
 	randomize()
-	title_label.text = "Sultan-like Interaction Demo"
-	goal_label.text = "Use character cards to resolve events. Win by resolving %d events before turn %d." % [WIN_RESOLVED_EVENTS, MAX_TURN]
+	title_label.text = "苏丹式互动演示"
+	goal_label.text = "派遣角色卡处理事件，在第 %d 回合前解决 %d 个事件即可获胜。" % [MAX_TURN, WIN_RESOLVED_EVENTS]
 
 	for i in card_buttons.size():
 		var idx := i
@@ -64,24 +64,24 @@ func _start_new_game() -> void:
 	random_event_pool = _build_random_events()
 	open_events.clear()
 	log_label.clear()
-	_append_log("A new rule begins.")
+	_append_log("新的统治开始了。")
 	_spawn_event_if_possible()
 	restart_button.visible = false
 	_refresh_all_ui()
 
 func _build_cards() -> Array[Dictionary]:
 	return [
-		{"id": 0, "name": "General Azim", "mil": 5, "wit": 2, "cha": 2, "cooldown": 0},
-		{"id": 1, "name": "Vizier Nadir", "mil": 1, "wit": 5, "cha": 3, "cooldown": 0},
-		{"id": 2, "name": "Envoy Samira", "mil": 2, "wit": 3, "cha": 5, "cooldown": 0}
+		{"id": 0, "name": "阿济姆将军", "mil": 5, "wit": 2, "cha": 2, "cooldown": 0},
+		{"id": 1, "name": "纳迪尔宰相", "mil": 1, "wit": 5, "cha": 3, "cooldown": 0},
+		{"id": 2, "name": "萨米拉使者", "mil": 2, "wit": 3, "cha": 5, "cooldown": 0}
 	]
 
 func _build_fixed_events() -> Array[Dictionary]:
 	return [
 		{
 			"id": "fixed_bandits",
-			"title": "Border Raid",
-			"desc": "Bandits raid trade roads.",
+			"title": "边境劫掠",
+			"desc": "盗匪袭扰商路，边境告急。",
 			"attr": "mil",
 			"dc": 5,
 			"deadline": 2,
@@ -90,8 +90,8 @@ func _build_fixed_events() -> Array[Dictionary]:
 		},
 		{
 			"id": "fixed_famine",
-			"title": "Granary Crisis",
-			"desc": "Rot damages grain stores.",
+			"title": "粮仓危机",
+			"desc": "霉变侵蚀粮仓，储粮受损。",
 			"attr": "wit",
 			"dc": 5,
 			"deadline": 2,
@@ -104,8 +104,8 @@ func _build_random_events() -> Array[Dictionary]:
 	return [
 		{
 			"id": "rand_envoy",
-			"title": "Foreign Delegation",
-			"desc": "A rival state proposes a tense treaty.",
+			"title": "外邦使团",
+			"desc": "敌对邦国派来使节，提出紧张条约。",
 			"attr": "cha",
 			"dc": 5,
 			"deadline": 2,
@@ -114,8 +114,8 @@ func _build_random_events() -> Array[Dictionary]:
 		},
 		{
 			"id": "rand_corruption",
-			"title": "Tax Corruption",
-			"desc": "Officials skim from tax routes.",
+			"title": "税路贪腐",
+			"desc": "官员在征税线路层层盘剥。",
 			"attr": "wit",
 			"dc": 6,
 			"deadline": 2,
@@ -124,8 +124,8 @@ func _build_random_events() -> Array[Dictionary]:
 		},
 		{
 			"id": "rand_merc",
-			"title": "Mercenary Mutiny",
-			"desc": "Unpaid mercenaries threaten the barracks.",
+			"title": "佣兵哗变",
+			"desc": "欠饷佣兵威胁军营秩序。",
 			"attr": "mil",
 			"dc": 6,
 			"deadline": 1,
@@ -135,8 +135,8 @@ func _build_random_events() -> Array[Dictionary]:
 	]
 
 func _refresh_all_ui() -> void:
-	turn_label.text = "Turn: %d / %d | Resolved: %d / %d" % [turn, MAX_TURN, resolved_events, WIN_RESOLVED_EVENTS]
-	stats_label.text = "Gold: %d    Food: %d    Stability: %d" % [realm["gold"], realm["food"], realm["stability"]]
+	turn_label.text = "回合：%d / %d | 已解决：%d / %d" % [turn, MAX_TURN, resolved_events, WIN_RESOLVED_EVENTS]
+	stats_label.text = "国库：%d    粮食：%d    稳定：%d" % [realm["gold"], realm["food"], realm["stability"]]
 	_refresh_cards_ui()
 	_refresh_events_ui()
 	assign_button.disabled = game_over
@@ -145,20 +145,20 @@ func _refresh_all_ui() -> void:
 func _refresh_cards_ui() -> void:
 	for i in cards.size():
 		var c: Dictionary = cards[i]
-		var status := "READY"
+		var status := "可用"
 		if c["cooldown"] > 0:
-			status = "BUSY(%d)" % c["cooldown"]
+			status = "忙碌(%d)" % c["cooldown"]
 		var selected_mark := ""
 		if selected_card_id == c["id"]:
-			selected_mark = " [SELECTED]"
-		card_buttons[i].text = "%s%s\nMIL %d | WIT %d | CHA %d\n%s" % [c["name"], selected_mark, c["mil"], c["wit"], c["cha"], status]
+			selected_mark = "【已选】"
+		card_buttons[i].text = "%s%s\n武力 %d | 智略 %d | 魅力 %d\n%s" % [c["name"], selected_mark, c["mil"], c["wit"], c["cha"], status]
 		card_buttons[i].disabled = game_over
 
 func _refresh_events_ui() -> void:
 	events_list.clear()
 	for i in open_events.size():
 		var e: Dictionary = open_events[i]
-		events_list.add_item("%s | Need %s >= %d | Due in %d" % [e["title"], String(e["attr"]).to_upper(), e["dc"], e["deadline"]])
+		events_list.add_item("%s | 需求：%s ≥ %d | 剩余：%d 回合" % [e["title"], _attr_label(String(e["attr"])), e["dc"], e["deadline"]])
 
 	if selected_event_index >= open_events.size():
 		selected_event_index = -1
@@ -167,13 +167,13 @@ func _refresh_events_ui() -> void:
 		events_list.select(selected_event_index)
 		_show_event_detail(selected_event_index)
 	else:
-		event_detail_label.text = "Select an event to see details."
+		event_detail_label.text = "请选择一个事件查看详情。"
 
 func _show_event_detail(index: int) -> void:
 	if index < 0 or index >= open_events.size():
 		return
 	var e: Dictionary = open_events[index]
-	event_detail_label.text = "%s\n%s\nSuccess: %s\nFail: %s" % [
+	event_detail_label.text = "%s\n%s\n成功：%s\n失败：%s" % [
 		e["title"],
 		e["desc"],
 		_effects_text(e["success"]),
@@ -185,7 +185,7 @@ func _on_card_selected(index: int) -> void:
 		return
 	var c: Dictionary = cards[index]
 	if c["cooldown"] > 0:
-		_append_log("%s is busy this turn." % c["name"])
+		_append_log("%s 本回合仍在忙碌。" % c["name"])
 		return
 	selected_card_id = c["id"]
 	_refresh_cards_ui()
@@ -198,10 +198,10 @@ func _on_assign_pressed() -> void:
 	if game_over:
 		return
 	if selected_card_id < 0:
-		_append_log("Pick a card first.")
+		_append_log("请先选择一张角色卡。")
 		return
 	if selected_event_index < 0 or selected_event_index >= open_events.size():
-		_append_log("Pick an event first.")
+		_append_log("请先选择一个事件。")
 		return
 
 	var card_index := _find_card_index(selected_card_id)
@@ -209,7 +209,7 @@ func _on_assign_pressed() -> void:
 		return
 	var card: Dictionary = cards[card_index]
 	if card["cooldown"] > 0:
-		_append_log("That card is busy.")
+		_append_log("该角色卡当前忙碌，无法派遣。")
 		return
 
 	var event: Dictionary = open_events[selected_event_index]
@@ -221,10 +221,10 @@ func _on_assign_pressed() -> void:
 	if success:
 		resolved_events += 1
 		_apply_effects(event["success"])
-		_append_log("SUCCESS: %s handled %s (%d vs %d)." % [card["name"], event["title"], power, dc])
+		_append_log("成功：%s 处理了「%s」（%d 对 %d）。" % [card["name"], event["title"], power, dc])
 	else:
 		_apply_effects(event["fail"])
-		_append_log("FAIL: %s failed %s (%d vs %d)." % [card["name"], event["title"], power, dc])
+		_append_log("失败：%s 未能处理「%s」（%d 对 %d）。" % [card["name"], event["title"], power, dc])
 
 	cards[card_index]["cooldown"] = 1
 	open_events.remove_at(selected_event_index)
@@ -254,7 +254,7 @@ func _process_event_deadlines() -> void:
 		e["deadline"] -= 1
 		if e["deadline"] < 0:
 			_apply_effects(e["fail"])
-			_append_log("EXPIRED: %s was ignored." % e["title"])
+			_append_log("逾期：事件「%s」被拖延错过了。" % e["title"])
 		else:
 			survivors.append(e)
 	open_events = survivors
@@ -273,13 +273,13 @@ func _spawn_event_if_possible() -> void:
 
 func _check_game_state() -> void:
 	if realm["stability"] <= 0 or realm["gold"] < 0 or realm["food"] < 0:
-		_end_game(false, "The realm collapsed.")
+		_end_game(false, "国政崩溃，王朝失序。")
 		return
 	if resolved_events >= WIN_RESOLVED_EVENTS:
-		_end_game(true, "You stabilized the court.")
+		_end_game(true, "你稳住了朝局，政权得以延续。")
 		return
 	if turn > MAX_TURN:
-		_end_game(false, "Time ran out.")
+		_end_game(false, "时限已到，改革未竟。")
 
 func _end_game(win: bool, msg: String) -> void:
 	if game_over:
@@ -287,9 +287,9 @@ func _end_game(win: bool, msg: String) -> void:
 	game_over = true
 	restart_button.visible = true
 	if win:
-		_append_log("[color=lime][b]WIN:[/b][/color] %s" % msg)
+		_append_log("[color=lime][b]胜利：[/b][/color] %s" % msg)
 	else:
-		_append_log("[color=red][b]LOSE:[/b][/color] %s" % msg)
+		_append_log("[color=red][b]失败：[/b][/color] %s" % msg)
 
 func _on_restart_pressed() -> void:
 	_start_new_game()
@@ -313,8 +313,30 @@ func _effects_text(effects: Dictionary) -> String:
 			var sign := "+"
 			if v < 0:
 				sign = ""
-			out.append("%s%s %s" % [sign, str(v), k])
+			out.append("%s%s %s" % [sign, str(v), _resource_label(k)])
 	return ", ".join(out)
+
+func _resource_label(key: String) -> String:
+	match key:
+		"gold":
+			return "国库"
+		"food":
+			return "粮食"
+		"stability":
+			return "稳定"
+		_:
+			return key
+
+func _attr_label(key: String) -> String:
+	match key:
+		"mil":
+			return "武力"
+		"wit":
+			return "智略"
+		"cha":
+			return "魅力"
+		_:
+			return key
 
 func _append_log(text: String) -> void:
 	log_label.append_text(text + "\n")
