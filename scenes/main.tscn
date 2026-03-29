@@ -77,6 +77,61 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "角色卡 3"
 
+[node name="MapTitle" type="Label" parent="Margin/Root"]
+layout_mode = 2
+text = "大地图"
+
+[node name="MapPanel" type="PanelContainer" parent="Margin/Root"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 180)
+
+[node name="MapCanvas" type="Control" parent="Margin/Root/MapPanel"]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MapBg" type="ColorRect" parent="Margin/Root/MapPanel/MapCanvas"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.145098, 0.172549, 0.219608, 1)
+
+[node name="CapitalSpotButton" type="Button" parent="Margin/Root/MapPanel/MapCanvas"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 238.0
+offset_top = 18.0
+offset_right = 338.0
+offset_bottom = 52.0
+text = "王都"
+
+[node name="FrontierSpotButton" type="Button" parent="Margin/Root/MapPanel/MapCanvas"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 60.0
+offset_top = 96.0
+offset_right = 168.0
+offset_bottom = 130.0
+text = "边境"
+
+[node name="PortSpotButton" type="Button" parent="Margin/Root/MapPanel/MapCanvas"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 426.0
+offset_top = 110.0
+offset_right = 534.0
+offset_bottom = 144.0
+text = "港口"
+
+[node name="LocationDetailLabel" type="Label" parent="Margin/Root"]
+unique_name_in_owner = true
+layout_mode = 2
+autowrap_mode = 3
+text = "请选择地图地点。"
+
 [node name="EventsTitle" type="Label" parent="Margin/Root"]
 layout_mode = 2
 text = "待处理事件"
@@ -103,7 +158,13 @@ theme_override_constants/separation = 8
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "派遣所选角色卡"
+text = "派遣所选角色"
+
+[node name="CancelAssignButton" type="Button" parent="Margin/Root/ActionRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "取消派遣"
 
 [node name="NextTurnButton" type="Button" parent="Margin/Root/ActionRow"]
 unique_name_in_owner = true
